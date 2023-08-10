@@ -1,0 +1,71 @@
+<app-header />
+<div class="container mx-auto">
+  <input
+    type="text"
+    placeholder="請輸入關鍵字"
+    class="input input-bordered border-2 w-full my-3"
+    [(ngModel)]="keyword"
+    (ngModelChange)="searchKeyword()"
+  />
+  <input
+    type="number"
+    placeholder="請輸入速率"
+    class="input input-bordered border-2 w-full my-3"
+    [(ngModel)]="rate"
+  />
+  <select
+    class="select select-bordered border-2 w-full"
+    [(ngModel)]="day"
+    (ngModelChange)="searchKeyword()"
+  >
+    <option value="">請選擇天數目標</option>
+    <option *ngFor="let day of days" [value]="day">{{ day }}天</option>
+  </select>
+  <div
+    *ngFor="let word of filterWords"
+    class="card w-full my-5 bg-base-300 shadow-xl"
+  >
+    <div class="card-body">
+      <h2 class="card-title flex items-center">
+        {{ word.engWord }}
+        <ng-icon
+          (click)="speak(word.engWord, Lang.ENG)"
+          class="cursor-pointer"
+          name="matVolumeUpOutline"
+        ></ng-icon>
+      </h2>
+      <p class="flex items-center">
+        {{ word.twWord }}
+        <ng-icon
+          (click)="speak(word.twWord, Lang.ZH_TW)"
+          class="cursor-pointer"
+          name="matVolumeUpOutline"
+        ></ng-icon>
+      </p>
+      <div class="card-actions flex-wrap d-flex">
+        <li
+          class="list-none w-full"
+          *ngFor="let sent of word.sentences; let idx = index"
+        >
+          <h3>
+            {{ idx + 1 }}. {{ sent.engSentences }}
+            <ng-icon
+              (click)="speak(sent.engSentences, Lang.ENG)"
+              class="cursor-pointer"
+              name="matVolumeUpOutline"
+            ></ng-icon>
+          </h3>
+          <h3>
+            {{ sent.twSentences }}
+          </h3>
+        </li>
+      </div>
+    </div>
+  </div>
+</div>
+<app-pagination
+  [total]="total()"
+  [currentPage]="page()"
+  (change)="paginationChange($event)"
+>
+</app-pagination>

@@ -1,0 +1,74 @@
+{
+  "words": [
+    {
+      "engWord": "resume",
+      "twWord": "履歷表",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Fax Your resume and cover letter to the above number",
+          "twSentences": "請把你的履歷表和求職信傳真到上面的號碼"
+        }
+      ]
+    },
+    {
+      "engWord": "opening",
+      "twWord": "空缺、職缺、開張、開始",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "There are several job openings at the restaurant right now",
+          "twSentences": "那間餐廳目前有幾個職缺"
+        },
+        {
+          "engSentences": "JX Finances officially announced the opening of its first international branch",
+          "twSentences": "JX Finances 公司正式宣布第一間海外分公司開始營業"
+        }
+      ]
+    },
+    {
+      "engWord": "applicant",
+      "twWord": "申請者、應徵者",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Applicants are required to submit a resume",
+          "twSentences": "應徵者必須提交一份履歷表"
+        }
+      ]
+    },
+    {
+      "engWord": "requirement",
+      "twWord": "必要條件",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "A driver is license is a requirement of this job.",
+          "twSentences": "駕照是這份工作的必要條件"
+        }
+      ]
+    },
+    {
+      "engWord": "meet",
+      "twWord": "滿足、符合(要求、條件等)",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Applicants must meet all the requirements for the job.",
+          "twSentences": "應徵者必須符合這份工作的所有必要條件"
+        }
+      ]
+    },
+    {
+      "engWord": "qualified",
+      "twWord": "有資格的，勝任的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "People with master's degrees are qualified for the research position.",
+          "twSentences": "有碩士學位的人，有資格得到研究工作的職位"
+        }
+      ]
+    }
+  ]
+}
