@@ -6,8 +6,8 @@
       "day": 1,
       "sentences": [
         {
-          "engSentences": "Fax Your resume and cover letter to the above number",
-          "twSentences": "請把你的履歷表和求職信傳真到上面的號碼"
+          "engSentences": "Fax Your resume and cover letter to the above number.",
+          "twSentences": "請把你的履歷表和求職信傳真到上面的號碼。"
         }
       ]
     },
@@ -17,12 +17,12 @@
       "day": 1,
       "sentences": [
         {
-          "engSentences": "There are several job openings at the restaurant right now",
-          "twSentences": "那間餐廳目前有幾個職缺"
+          "engSentences": "There are several job openings at the restaurant right now.",
+          "twSentences": "那間餐廳目前有幾個職缺。"
         },
         {
-          "engSentences": "JX Finances officially announced the opening of its first international branch",
-          "twSentences": "JX Finances 公司正式宣布第一間海外分公司開始營業"
+          "engSentences": "JX Finances officially announced the opening of its first international branch.",
+          "twSentences": "JX Finances 公司正式宣布第一間海外分公司開始營業。"
         }
       ]
     },
@@ -32,8 +32,8 @@
       "day": 1,
       "sentences": [
         {
-          "engSentences": "Applicants are required to submit a resume",
-          "twSentences": "應徵者必須提交一份履歷表"
+          "engSentences": "Applicants are required to submit a resume.",
+          "twSentences": "應徵者必須提交一份履歷表。"
         }
       ]
     },
@@ -44,7 +44,7 @@
       "sentences": [
         {
           "engSentences": "A driver is license is a requirement of this job.",
-          "twSentences": "駕照是這份工作的必要條件"
+          "twSentences": "駕照是這份工作的必要條件。"
         }
       ]
     },
@@ -55,7 +55,7 @@
       "sentences": [
         {
           "engSentences": "Applicants must meet all the requirements for the job.",
-          "twSentences": "應徵者必須符合這份工作的所有必要條件"
+          "twSentences": "應徵者必須符合這份工作的所有必要條件。"
         }
       ]
     },
@@ -66,7 +66,148 @@
       "sentences": [
         {
           "engSentences": "People with master's degrees are qualified for the research position.",
-          "twSentences": "有碩士學位的人，有資格得到研究工作的職位"
+          "twSentences": "有碩士學位的人，有資格得到研究工作的職位。"
+        }
+      ]
+    },
+    {
+      "engWord": "candidate",
+      "twWord": "候選者、應徵者",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Five candidates will be selected for final interviews.",
+          "twSentences": "將有五位候選者獲選參加最終面試。"
+        }
+      ]
+    },
+    {
+      "engWord": "confidence",
+      "twWord": "信心，自信;信任",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "We have confidence that she can handle the position.",
+          "twSentences": "我們有信心她能勝任這個職位。"
+        },
+        {
+          "engSentences": "The recommendations showed confidence in his abilities.",
+          "twSentences": "這些推薦信表現出對她的能力的信心。"
+        }
+      ]
+    },
+    {
+      "engWord": "highly",
+      "twWord": "很，非常",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Mr.Monroe's experience makes him highly qualified for the job.",
+          "twSentences": "Mr.Monroe的經歷使他很有資格獲得這份工作。"
+        }
+      ]
+    },
+    {
+      "engWord": "professional",
+      "twWord": "專業的、職業的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Jeff is known as a professional photographer.",
+          "twSentences": "Jeff以職業攝影師的身分為人所知。"
+        },
+        {
+          "engSentences": "Merseyside Hospital is looking for a certified health professional.",
+          "twSentences": "Merseyside 醫院正在尋找有證照的醫療專業人士。"
+        }
+      ]
+    },
+    {
+      "engWord": "interview",
+      "twWord": "面試",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "The interviews are being held in meeting room there.",
+          "twSentences": "面試正在第三會議室舉行。"
+        },
+        {
+          "engSentences": "The manager interviewed almost 100 applicants.",
+          "twSentences": "那位經理面試了將近100位應徵者。"
+        }
+      ]
+    },
+    {
+      "engWord": "hire",
+      "twWord": "雇用",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "The company expects to hire several new employees next month.",
+          "twSentences": "公司預計下個月雇用幾名新員工。"
+        }
+      ]
+    },
+    {
+      "engWord": "training",
+      "twWord": "訓練",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "This company offers on-the-job training for new staff.",
+          "twSentences": "這間公司為新員工提供工作現場的訓練。"
+        }
+      ]
+    },
+    {
+      "engWord": "reference",
+      "twWord": "參考",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Philip asked his previous employer to write a reference letter for him.",
+          "twSentences": "Philip 請她的前雇主為他寫一封推薦信。"
+        },
+        {
+          "engSentences": "The database contains reference material on all aspects of labor law.",
+          "twSentences": "這個資料庫包含關於勞動法規各方面的參考資料。"
+        }
+      ]
+    },
+    {
+      "engWord": "position",
+      "twWord": "職位;位置",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "The advertised position provides health care and other benefits.",
+          "twSentences": "廣告上的職位提供醫療保健和其他福利。"
+        },
+        {
+          "engSentences": "The secretary positioned the chair around the table before the meeting began.",
+          "twSentences": "秘書在會議開始前把椅子擺放在桌子周圍。"
+        }
+      ]
+    },
+    {
+      "engWord": "achievement",
+      "twWord": "成就，達成",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "List all of your achievements from previous jobs on resume.",
+          "twSentences": "請在你的履歷表中列出上一份工作中的所有成就。"
+        }
+      ]
+    },
+    {
+      "engWord": "impressed",
+      "twWord": "感到印象深刻的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "The CEO was impressed by his assistant's organizing skills.",
+          "twSentences": "執行長對他的助理的組織能力印象深刻。"
         }
       ]
     }
