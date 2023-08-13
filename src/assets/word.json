@@ -210,6 +210,175 @@
           "twSentences": "執行長對他的助理的組織能力印象深刻。"
         }
       ]
+    },
+    {
+      "engWord": "excellent",
+      "twWord": "有資格的、合適的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "The part-time workers are also eligible for paid holidays.",
+          "twSentences": "兼職員工也有資格獲得帶薪休假。"
+        }
+      ]
+    },
+    {
+      "engWord": "identify",
+      "twWord": "辨識，認出",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Staff members wear uniforms so that they are easy for customers to identify.",
+          "twSentences": "員工穿著制服，讓顧客容易認出他們。"
+        }
+      ]
+    },
+    {
+      "engWord": "associate",
+      "twWord": "使有關聯",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Two of the applicants were associated with a competitor.",
+          "twSentences": "有兩名應徵者和競爭公司有關係。"
+        }
+      ]
+    },
+    {
+      "engWord": "condition",
+      "twWord": "條件",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "The conditions of employment are listed in the job opening notice.",
+          "twSentences": "雇用的條件列在職缺公告裡。"
+        }
+      ]
+    },
+    {
+      "engWord": "employment",
+      "twWord": "雇用",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "The company announced employment opportunities in personnel department.",
+          "twSentences": "公司宣佈了人事部門的雇用(工作)機會。"
+        }
+      ]
+    },
+    {
+      "engWord": "lack",
+      "twWord": "缺乏",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Carl lacked the ability to get along well with his coworkers.",
+          "twSentences": "Carl缺乏與同事相處融洽的能力。"
+        },
+        {
+          "engSentences": "Due to a lack of found, the project has been temporarily halted.",
+          "twSentences": "由於資金的缺乏，這項計畫暫時被中止了。"
+        }
+      ]
+    },
+    {
+      "engWord": "managerial",
+      "twWord": "管理的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Mike is seeking a managerial position in the accounting field.",
+          "twSentences": "Mike正在尋找會計領域的管理職位。"
+        }
+      ]
+    },
+    {
+      "engWord": "diligent",
+      "twWord": "勤奮的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Carmen is one of the most diligent workers in the company.",
+          "twSentences": "Carmen是公司最勤奮的員工之一。"
+        }
+      ]
+    },
+    {
+      "engWord": "familiar",
+      "twWord": "熟悉的，親近的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Staff must review the handbook to become familiar with it.",
+          "twSentences": "員工必須複習手冊以熟悉內容。"
+        }
+      ]
+    },
+    {
+      "engWord": "proficiency",
+      "twWord": "熟練，精通",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Overseas workers need proof of proficiency in a second language.",
+          "twSentences": "海外員工需要有精通第二語言的證明。"
+        }
+      ]
+    },
+    {
+      "engWord": "prospective",
+      "twWord": "預期的，未來的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Prospective employees were asked to come in for a second interview.",
+          "twSentences": "有可能成為員工的人，被要求前往參加第二次面試。"
+        }
+      ]
+    },
+    {
+      "engWord": "appeal",
+      "twWord": "呼籲，有吸引力",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "The 10 percent pay increase appealed to the staff.",
+          "twSentences": "百分之10的加薪對員工很有吸引力。"
+        }
+      ]
+    },
+    {
+      "engWord": "specialize",
+      "twWord": "專攻，專門從事",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Most of the programmers specialized in software design in college.",
+          "twSentences": "這些程式設計師大部分都在大學時期專攻軟體設計。"
+        }
+      ]
+    },
+    {
+      "engWord": "apprehensive",
+      "twWord": "擔心的，憂慮的",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Many people feel apprehensive before an important job interview.",
+          "twSentences": "許多人在重要的工作面試前會感到憂慮。"
+        }
+      ]
+    },
+    {
+      "engWord": "consultant",
+      "twWord": "顧問",
+      "day": 1,
+      "sentences": [
+        {
+          "engSentences": "Emma currently works in London as an interior design consultant.",
+          "twSentences": "Emma目前在倫敦擔任室內設計顧問。"
+        }
+      ]
     }
   ]
 }
