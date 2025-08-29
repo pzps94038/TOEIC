@@ -20,10 +20,10 @@ RUN npm run build
 # Build Stage 2
 
 FROM node:22-alpine
-WORKDIR /app
+WORKDIR /
 
 # Only `.output` folder is needed from the build stage
-COPY --from=build /app/.output/ ./
+COPY --from=build /.output/ ./
 
 # Change the port and host
 ENV PORT=80
