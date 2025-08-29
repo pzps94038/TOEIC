@@ -6,10 +6,7 @@ WORKDIR /app
 RUN corepack enable
 
 # Copy package.json and your lockfile
-COPY package.json package-lock.json ./
-
-# Install oxc-parser separately as dev dependency first
-RUN npm install -D oxc-parser
+COPY package.json ./
 
 # Install dependencies
 RUN npm ci
