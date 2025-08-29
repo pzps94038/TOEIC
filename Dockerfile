@@ -1,5 +1,3 @@
-# Build Stage 1
-
 FROM node:22-alpine AS build
 WORKDIR /app
 
@@ -17,17 +15,7 @@ COPY . ./
 # Build the project
 RUN npm run build
 
-# Build Stage 2
-
-FROM node:22-alpine
-WORKDIR /
-
-# Only `.output` folder is needed from the build stage
-COPY --from=build /app/.output/ ./
-
-# Change the port and host
-ENV PORT=80
-ENV HOST=0.0.0.0
+WORKDIR /app/.output/
 
 EXPOSE 80
 
