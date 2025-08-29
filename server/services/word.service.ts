@@ -1,4 +1,6 @@
 import type { WordWithDay, Sentence } from "~~/server/model/word/word-model";
+import { pool } from "~~/server/utils/database";
+import type { RowDataPacket, ResultSetHeader } from "mysql2";
 
 /**
  * 單字服務類別
@@ -21,23 +23,62 @@ export class WordService {
     // 驗證單字資料
     this.validateWordData(wordData);
     
-    // 建立單字物件 (遵循 word-model.ts 的結構)
-    const newWord: WordWithDay = {
-      engWord: wordData.engWord.trim(),
-      twWord: wordData.twWord.trim(),
-      day: wordData.day,
-      sentences: wordData.sentences.map(sentence => ({
-        engSentences: sentence.engSentences.trim(),
-        twSentences: sentence.twSentences.trim()
-      }))
-    };
-
-    // TODO: 將單字儲存到 MySQL 資料庫
-    // 使用之前建立的 database migration 結構
-    // INSERT INTO words (eng_word, tw_word, day_number, difficulty_level, word_type, created_by)
-    // INSERT INTO sentences (word_id, eng_sentence, tw_sentence, sentence_order, created_by)
+    const connection = await pool.getConnection();
     
-    return newWord;
+    try {
+      // 開始交易
+      await connection.beginTransaction();
+      
+      // 檢查單字是否已存在
+      const existsResult = await connection.execute<RowDataPacket[]>(
+        'SELECT COUNT(*) as count FROM words WHERE eng_word = ?',
+        [wordData.engWord.trim()]
+      );
+      
+      if (existsResult[0][0].count > 0) {
+        throw new Error('此英文單字已存在');
+      }
+      
+      // 插入單字資料
+      const insertWordResult = await connection.execute<ResultSetHeader>(
+        'INSERT INTO words (eng_word, tw_word, day_number, difficulty_level, created_at) VALUES (?, ?, ?, ?, NOW())',
+        [wordData.engWord.trim(), wordData.twWord.trim(), wordData.day, 'medium']
+      );
+      
+      const wordId = insertWordResult[0].insertId;
+      
+      // 插入例句資料
+      for (let i = 0; i < wordData.sentences.length; i++) {
+        const sentence = wordData.sentences[i];
+        await connection.execute(
+          'INSERT INTO sentences (word_id, eng_sentence, tw_sentence, sentence_order, created_at) VALUES (?, ?, ?, ?, NOW())',
+          [wordId, sentence.engSentences.trim(), sentence.twSentences.trim(), i + 1]
+        );
+      }
+      
+      // 提交交易
+      await connection.commit();
+      
+      // 建立返回物件 (遵循 word-model.ts 的結構)
+      const newWord: WordWithDay = {
+        engWord: wordData.engWord.trim(),
+        twWord: wordData.twWord.trim(),
+        day: wordData.day,
+        sentences: wordData.sentences.map(sentence => ({
+          engSentences: sentence.engSentences.trim(),
+          twSentences: sentence.twSentences.trim()
+        }))
+      };
+      
+      return newWord;
+      
+    } catch (error) {
+      // 回滾交易
+      await connection.rollback();
+      throw error;
+    } finally {
+      connection.release();
+    }
   }
 
   /**
@@ -80,9 +121,18 @@ export class WordService {
    * @returns 是否已存在
    */
   static async isWordExists(engWord: string): Promise<boolean> {
-    // TODO: 查詢資料庫檢查單字是否已存在
-    // SELECT COUNT(*) FROM words WHERE eng_word = ?
-    return false;
+    const connection = await pool.getConnection();
+    
+    try {
+      const [rows] = await connection.execute<RowDataPacket[]>(
+        'SELECT COUNT(*) as count FROM words WHERE eng_word = ? AND is_active = TRUE',
+        [engWord.trim()]
+      );
+      
+      return rows[0].count > 0;
+    } finally {
+      connection.release();
+    }
   }
 
   /**
@@ -91,8 +141,97 @@ export class WordService {
    * @returns 該日期的單字列表
    */
   static async getWordsByDay(day: number): Promise<WordWithDay[]> {
-    // TODO: 從資料庫查詢指定日期的單字
-    // SELECT w.*, s.* FROM words w LEFT JOIN sentences s ON w.id = s.word_id WHERE w.day_number = ?
-    return [];
+    const connection = await pool.getConnection();
+    
+    try {
+      const [rows] = await connection.execute<RowDataPacket[]>(
+        `SELECT 
+          w.eng_word,
+          w.tw_word,
+          w.day_number as day,
+          s.eng_sentence as engSentences,
+          s.tw_sentence as twSentences
+        FROM words w
+        LEFT JOIN sentences s ON w.id = s.word_id
+        WHERE w.day_number = ? AND w.is_active = TRUE AND s.is_active = TRUE
+        ORDER BY w.eng_word, s.sentence_order`,
+        [day]
+      );
+      
+      // 將查詢結果轉換為 WordWithDay 格式
+      const wordMap = new Map<string, WordWithDay>();
+      
+      rows.forEach(row => {
+        if (!wordMap.has(row.eng_word)) {
+          wordMap.set(row.eng_word, {
+            engWord: row.eng_word,
+            twWord: row.tw_word,
+            day: row.day,
+            sentences: []
+          });
+        }
+        
+        const word = wordMap.get(row.eng_word)!;
+        if (row.engSentences && row.twSentences) {
+          word.sentences.push({
+            engSentences: row.engSentences,
+            twSentences: row.twSentences
+          });
+        }
+      });
+      
+      return Array.from(wordMap.values());
+    } finally {
+      connection.release();
+    }
+  }
+
+  /**
+   * 獲取所有單字
+   * @returns 所有單字列表
+   */
+  static async getAllWords(): Promise<WordWithDay[]> {
+    const connection = await pool.getConnection();
+    
+    try {
+      const [rows] = await connection.execute<RowDataPacket[]>(
+        `SELECT 
+          w.eng_word,
+          w.tw_word,
+          w.day_number as day,
+          s.eng_sentence as engSentences,
+          s.tw_sentence as twSentences
+        FROM words w
+        LEFT JOIN sentences s ON w.id = s.word_id
+        WHERE w.is_active = TRUE AND s.is_active = TRUE
+        ORDER BY w.day_number, w.eng_word, s.sentence_order`
+      );
+      
+      // 將查詢結果轉換為 WordWithDay 格式
+      const wordMap = new Map<string, WordWithDay>();
+      
+      rows.forEach(row => {
+        if (!wordMap.has(row.eng_word)) {
+          wordMap.set(row.eng_word, {
+            engWord: row.eng_word,
+            twWord: row.tw_word,
+            day: row.day,
+            sentences: []
+          });
+        }
+        
+        const word = wordMap.get(row.eng_word)!;
+        if (row.engSentences && row.twSentences) {
+          word.sentences.push({
+            engSentences: row.engSentences,
+            twSentences: row.twSentences
+          });
+        }
+      });
+      
+      return Array.from(wordMap.values());
+    } finally {
+      connection.release();
+    }
   }
 }
