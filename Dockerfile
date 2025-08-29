@@ -5,8 +5,8 @@ WORKDIR /app
 
 RUN corepack enable
 
-# Copy package.json and your lockfile, here we add pnpm-lock.yaml for illustration
-COPY package.json package-lock.json
+# Copy package.json and your lockfile
+COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm ci
@@ -23,7 +23,7 @@ FROM node:22-alpine
 WORKDIR /
 
 # Only `.output` folder is needed from the build stage
-COPY --from=build /.output/ ./
+COPY --from=build /app/.output/ ./
 
 # Change the port and host
 ENV PORT=80
@@ -31,4 +31,4 @@ ENV HOST=0.0.0.0
 
 EXPOSE 80
 
-CMD ["node", "/app/server/index.mjs"]
+CMD ["node", "server/index.mjs"]
