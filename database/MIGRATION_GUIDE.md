@@ -3,9 +3,9 @@
 
 ## 概述 (Overview)
 
-本專案原先使用靜態資料 (wordData array)，現在遷移至 MySQL 資料庫以支援更複雜的功能，包括使用者管理和學習進度追蹤。
+本專案原先使用靜態資料 (wordData array)，現在遷移至 MySQL 資料庫以支援更複雜的功能，包括使用者管理。
 
-This project originally used static data (wordData array) and is now migrating to MySQL database to support more complex features including user management and learning progress tracking.
+This project originally used static data (wordData array) and is now migrating to MySQL database to support more complex features including user management.
 
 ## 資料庫結構 (Database Structure)
 
@@ -16,25 +16,15 @@ This project originally used static data (wordData array) and is now migrating t
    - 支援登入驗證
    - 追蹤使用者活躍狀態
 
-2. **registrations (註冊表格)**
-   - 處理使用者註冊流程
-   - 電子郵件驗證機制
-   - 註冊令牌管理
-
-3. **words (單字表格)**
+2. **words (單字表格)**
    - 儲存 TOEIC 單字資料
    - 支援難度分級
    - 按天數組織學習內容
 
-4. **sentences (例句表格)**
+3. **sentences (例句表格)**
    - 儲存單字對應的例句
    - 支援多個例句per單字
    - 中英文對照
-
-5. **user_progress (學習進度表格)**
-   - 追蹤使用者學習進度
-   - 掌握程度評估
-   - 複習次數統計
 
 ## 安裝步驟 (Installation Steps)
 

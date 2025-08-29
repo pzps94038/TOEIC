@@ -36,24 +36,9 @@ CREATE TABLE users (
     last_login TIMESTAMP NULL COMMENT '最後登入時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='使用者資料表';
 
--- 2. 註冊表格 (Registration Table)
-CREATE TABLE registrations (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(100) NOT NULL COMMENT '註冊電子郵件',
-    username VARCHAR(50) NOT NULL COMMENT '註冊使用者名稱',
-    verification_token VARCHAR(255) NOT NULL COMMENT '驗證令牌',
-    is_verified BOOLEAN DEFAULT FALSE COMMENT '是否已驗證',
-    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '註冊日期',
-    verified_date TIMESTAMP NULL COMMENT '驗證日期',
-    expires_at TIMESTAMP NOT NULL COMMENT '令牌過期時間',
-    user_id INT NULL COMMENT '關聯的使用者ID',
-    INDEX idx_email (email),
-    INDEX idx_token (verification_token),
-    INDEX idx_expires (expires_at),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='使用者註冊驗證表';
 
--- 3. 單字表格 (Words Table)
+
+-- 2. 單字表格 (Words Table)
 CREATE TABLE words (
     id INT AUTO_INCREMENT PRIMARY KEY,
     eng_word VARCHAR(100) NOT NULL COMMENT '英文單字',
@@ -73,7 +58,7 @@ CREATE TABLE words (
     UNIQUE KEY unique_eng_word (eng_word)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='TOEIC單字表';
 
--- 4. 例句表格 (Sentences Table)
+-- 3. 例句表格 (Sentences Table)
 CREATE TABLE sentences (
     id INT AUTO_INCREMENT PRIMARY KEY,
     word_id INT NOT NULL COMMENT '關聯的單字ID',
@@ -91,24 +76,7 @@ CREATE TABLE sentences (
     FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='單字例句表';
 
--- 5. 使用者學習進度表格 (User Learning Progress Table)
-CREATE TABLE user_progress (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL COMMENT '使用者ID',
-    word_id INT NOT NULL COMMENT '單字ID',
-    learned_date DATE DEFAULT (CURRENT_DATE) COMMENT '學習日期',
-    mastery_level ENUM('not_learned', 'learning', 'familiar', 'mastered') DEFAULT 'not_learned' COMMENT '掌握程度',
-    review_count INT DEFAULT 0 COMMENT '複習次數',
-    last_reviewed TIMESTAMP NULL COMMENT '最後複習時間',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間',
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新時間',
-    INDEX idx_user_word (user_id, word_id),
-    INDEX idx_mastery (mastery_level),
-    INDEX idx_learned_date (learned_date),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (word_id) REFERENCES words(id) ON DELETE CASCADE,
-    UNIQUE KEY unique_user_word (user_id, word_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='使用者學習進度表';
+
 
 -- 建立額外索引優化查詢效能
 CREATE INDEX idx_users_email ON users(email);
@@ -157,17 +125,9 @@ INSERT INTO sentences (word_id, eng_sentence, tw_sentence, sentence_order, creat
 (11, 'The presentation will begin in ten minutes.', '簡報將在十分鐘後開始。', 1, 1),
 (12, 'The annual conference will be held in Tokyo.', '年度研討會將在東京舉行。', 1, 1);
 
--- 4. 插入示範學習進度
-INSERT INTO user_progress (user_id, word_id, mastery_level, review_count, last_reviewed) VALUES 
-(2, 1, 'learning', 2, NOW()),
-(2, 2, 'familiar', 3, NOW()),
-(2, 3, 'mastered', 5, NOW()),
-(2, 4, 'learning', 1, NOW());
 
--- 5. 插入示範註冊資料
-INSERT INTO registrations (email, username, verification_token, is_verified, verified_date, expires_at, user_id) VALUES 
-('demo@toeic.com', 'demo_user', 'verified_token_123', TRUE, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 2),
-('pending@toeic.com', 'pending_user', 'pending_token_456', FALSE, NULL, DATE_ADD(NOW(), INTERVAL 1 DAY), NULL);
+
+
 
 -- =====================================================
 -- 完成訊息與統計
@@ -178,9 +138,7 @@ SELECT
     'TOEIC Database initialization completed successfully!' AS Status,
     (SELECT COUNT(*) FROM users) AS Users_Count,
     (SELECT COUNT(*) FROM words) AS Words_Count,
-    (SELECT COUNT(*) FROM sentences) AS Sentences_Count,
-    (SELECT COUNT(*) FROM user_progress) AS Progress_Count,
-    (SELECT COUNT(*) FROM registrations) AS Registrations_Count;
+    (SELECT COUNT(*) FROM sentences) AS Sentences_Count;
 
 -- 顯示所有資料表
 SHOW TABLES;

@@ -61,23 +61,13 @@ INSERT INTO sentences (word_id, eng_sentence, tw_sentence, sentence_order, creat
 -- conference (id: 12)
 (12, 'The annual conference will be held in Tokyo.', '年度研討會將在東京舉行。', 1, 1);
 
--- 4. 插入示範學習進度 (Insert demo learning progress)
-INSERT INTO user_progress (user_id, word_id, mastery_level, review_count, last_reviewed) VALUES 
-(2, 1, 'learning', 2, NOW()),
-(2, 2, 'familiar', 3, NOW()),
-(2, 3, 'mastered', 5, NOW()),
-(2, 4, 'learning', 1, NOW());
 
--- 5. 插入示範註冊資料 (Insert demo registration data)
-INSERT INTO registrations (email, username, verification_token, is_verified, verified_date, expires_at, user_id) VALUES 
-('demo@toeic.com', 'demo_user', 'verified_token_123', TRUE, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 2),
-('pending@toeic.com', 'pending_user', 'pending_token_456', FALSE, NULL, DATE_ADD(NOW(), INTERVAL 1 DAY), NULL);
+
+
 
 -- 顯示插入的資料統計
 SELECT 
     'Data insertion completed!' AS Status,
     (SELECT COUNT(*) FROM users) AS Users_Count,
     (SELECT COUNT(*) FROM words) AS Words_Count,
-    (SELECT COUNT(*) FROM sentences) AS Sentences_Count,
-    (SELECT COUNT(*) FROM user_progress) AS Progress_Count,
-    (SELECT COUNT(*) FROM registrations) AS Registrations_Count;
+    (SELECT COUNT(*) FROM sentences) AS Sentences_Count;
