@@ -21,6 +21,16 @@ export interface Word {
 }
 
 /**
+ * 完整單字資料結構 (包含學習日期)
+ */
+export interface WordWithDay extends Word {
+  /**
+   * 第幾天的單字
+   */
+  day: number;
+}
+
+/**
  * 例句
  */
 export interface Sentence {
